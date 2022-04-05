@@ -1,0 +1,19 @@
+import pandas as pd
+from openpyxl import load_workbook
+arquivo = r"C:\Users\2103896595\Desktop\baixados\saida de dados\SAIDA DBO\DBO BASE VVLOG_1.xlsx"
+
+
+# creating the DataFrame
+cars_data = pd.DataFrame({'Cars': ['BMW', 'Audi', 'Bugatti', 
+                                   'Porsche', 'Volkswagen'],
+                          'MaxSpeed': [220, 230, 240, 210, 190],
+                          'Color': ['Black', 'Red', 'Blue', 
+                                    'Violet', 'White']})
+  
+wb = load_workbook(arquivo)
+ws = wb["DBO"]
+df = cars_data.values.tolist()
+for i in range(len(df)):
+    ws.append(df[i])
+wb.save()
+wb.close()
